@@ -83,7 +83,7 @@ def plot_graph(k3_array, file_name,save_path):
     plt.plot(x, k3_array[:, -1], label='Semi-Analytical K3')
     plt.xlabel('element number')
     plt.ylabel('K3 values')
-    plt.ylim(30 * 10** 7, 60* 10 ** 7)
+    plt.ylim(40 * 10** 7, 70* 10 ** 7)
     plt.title(file_name)
     plt.legend()
     plt.grid(True)
