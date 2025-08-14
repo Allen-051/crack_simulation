@@ -75,15 +75,14 @@ def calculate_relative_error(average_values, K3):
     rel_e = [(round((avg - K3) / K3 * 100, 3)) for avg in average_values]
     return rel_e
 
-def plot_graph(k3_array, file_name,save_path):
+def plot_graph(k3_array, file_name, save_path):
     plt.figure(figsize=(10, 6))
     x = k3_array[:, 0]
     for i in range(1, k3_array.shape[1] - 1):
         plt.plot(x, k3_array[:, i], label=f'c-{i}')
-    plt.plot(x, k3_array[:, -1], label='Semi-Analytical K3')
     plt.xlabel('element number')
     plt.ylabel('K3 values')
-    plt.ylim(40 * 10** 7, 70* 10 ** 7)
+    plt.ylim(0 * 10** 7, 80* 10 ** 7)
     plt.title(file_name)
     plt.legend()
     plt.grid(True)
