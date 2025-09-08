@@ -104,19 +104,26 @@ def save_results(k3_array, average_values, rel_e, up_bond, low_bond, output_path
 
 
 def main():
-    ask_path = input('請告訴我檔案位置(絕對位置)如 D:\pbc\job-1.dat'
-                     '\n輸入檔案路徑：　').strip()
-    if not os.path.exists(ask_path):
-        print("檔案不存在，請確認路徑是否正確。")
-        exit()
+    # 檢查讀取路徑是否正確
+    while True:
+        ask_path = input('請告訴我檔案位置(絕對位置)如 D:\\pbc\\job-1.dat\n輸入檔案路徑： ').strip()
+        if os.path.exists(ask_path):
+            break
+        else:
+            print("檔案不存在，請確認路徑是否正確，並再試一次。")
+
+    # 檢查儲存路徑是否正確或可建立
+    while True:
+        save_path = input("請告訴我，你想要儲存這個檔案的路徑位置(絕對位置): ").strip()
+        try:
+            os.makedirs(save_path, exist_ok=True)
+            break
+        except Exception as e:
+            print(f"無法建立資料夾，請確認路徑是否正確。\n錯誤訊息: {e}")
 
     process_K3 = extract_K3()
     lines = read_file(ask_path)
     ask_name = input('請告訴我這個檔案的名稱(無須附檔名)： ')
-    ### 輸入檔案儲存路徑 ###
-    save_path = input("請告訴我，你想要儲存這個檔案的路徑位置(絕對位置): ").strip()
-
-    os.makedirs(save_path, exist_ok=True)
     output_txt = os.path.join(save_path, f"{ask_name}.txt")
     output_jpg = os.path.join(save_path, f"{ask_name}.jpg")
 
